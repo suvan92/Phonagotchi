@@ -10,7 +10,30 @@
 
 @implementation Pet
 
--(void)petting:(NSTimeInterval *)velocity {
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _isGrumpy = NO;
+        _isHappy = YES;
+    }
+    return self;
+}
+
+-(void)petting:(CGPoint)velocity {
+    
+    if (velocity.x > 5000) {
+        NSLog(@"%@", NSStringFromCGPoint(velocity));
+    }
+    
+    
+    if (velocity.x > 10000) {
+        self.isGrumpy = YES;
+        self.isHappy = NO;
+    } else if ((velocity.x < 10000) && (velocity.x > 1000)) {
+        self.isHappy = YES;
+        self.isGrumpy = NO;
+    }
     
 }
 

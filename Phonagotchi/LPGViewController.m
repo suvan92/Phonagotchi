@@ -7,10 +7,13 @@
 //
 
 #import "LPGViewController.h"
+#import "Pet.h"
 
 @interface LPGViewController () <UIGestureRecognizerDelegate>
 
-@property (nonatomic) UIImageView *petImageView;
+@property (nonatomic, strong) UIImageView *petImageView;
+@property (nonatomic, strong) IBOutlet UIPanGestureRecognizer *panGR;
+@property (nonatomic, strong) Pet *pet;
 
 @end
 
@@ -24,6 +27,7 @@
     
     self.petImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.petImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.petImageView.userInteractionEnabled = YES;
     
     self.petImageView.image = [UIImage imageNamed:@"default"];
     
@@ -45,6 +49,29 @@
                                                          multiplier:1.0
                                                            constant:0.0]];
     
+    
+    self.panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                         action:@selector(handlePettingGesture:)];
+    
+    [self.petImageView addGestureRecognizer:self.panGR];
+    
+    self.pet = [[Pet alloc] init];
+    
+    
 }
+
+-(void)handlePettingGesture:(UIPanGestureRecognizer *)panGesture {
+    CGPoint petVelocity = [panGesture velocityInView:self.petImageView];
+    
+    [self.pet petting:petVelocity];
+    
+    if (self.pet.isGrumpy) {
+        self.petImageView.image = [UIImage imageNamed:@"grumpy"];
+    } else if (self.pet.isHappy) {
+        self.petImageView.image = [UIImage imageNamed:@"default"];
+    }
+}
+
+
 
 @end

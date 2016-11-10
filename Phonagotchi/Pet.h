@@ -11,7 +11,8 @@
 @interface Pet : NSObject
 
 @property (nonatomic) BOOL isGrumpy;
+@property (nonatomic) BOOL isHappy;
 
--(void)petting:(NSTimeInterval *)velocity;
+-(void)petting:(CGPoint)velocity;
 
 @end
