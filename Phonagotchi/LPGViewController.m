@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UIImageView *appleImageView;
 @property (nonatomic, strong) UIImageView *bucketImageView;
 @property (nonatomic, strong) IBOutlet UIPanGestureRecognizer *panGR;
+@property (nonatomic, strong) IBOutlet UIPinchGestureRecognizer *pinchGR;
 @property (nonatomic, strong) Pet *pet;
 
 @end
@@ -43,9 +44,10 @@
     self.bucketImageView.image = [UIImage imageNamed:@"bucket"];
     
     [self.view addSubview:self.petImageView];
-    [self.view addSubview:self.appleImageView];
     [self.view addSubview:self.bucketImageView];
+    [self.view addSubview:self.appleImageView];
     
+    // PET CONSTRAINTS
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.petImageView
                                                           attribute:NSLayoutAttributeCenterX
                                                           relatedBy:NSLayoutRelationEqual
@@ -62,6 +64,8 @@
                                                          multiplier:1.0
                                                            constant:0.0]];
     
+    
+    // APPLE CONSTRAINTS
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.appleImageView
                                                           attribute:NSLayoutAttributeCenterX
                                                           relatedBy:NSLayoutRelationEqual
@@ -84,7 +88,7 @@
                                                                        toItem:nil
                                                                     attribute:NSLayoutAttributeNotAnAttribute
                                                                    multiplier:1.0
-                                                                     constant:50]];
+                                                                     constant:40]];
     
     [self.appleImageView addConstraint:[NSLayoutConstraint constraintWithItem:self.appleImageView
                                                                     attribute:NSLayoutAttributeHeight
@@ -92,8 +96,8 @@
                                                                        toItem:nil
                                                                     attribute:NSLayoutAttributeNotAnAttribute
                                                                    multiplier:1.0
-                                                                     constant:50]];
-    
+                                                                     constant:40]];
+    // BUCKET CONSTRAINTS
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.bucketImageView
                                                           attribute:NSLayoutAttributeCenterX
                                                           relatedBy:NSLayoutRelationEqual
@@ -107,7 +111,7 @@
                                                           relatedBy:NSLayoutRelationEqual
                                                              toItem:self.view
                                                           attribute:NSLayoutAttributeCenterY
-                                                         multiplier:1.8
+                                                         multiplier:1.63
                                                            constant:0.0]];
     
     [self.bucketImageView addConstraint:[NSLayoutConstraint constraintWithItem:self.bucketImageView
@@ -127,12 +131,14 @@
                                                                       constant:50]];
     
     
-    
-    
     self.panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                          action:@selector(handlePettingGesture:)];
     
+    self.pinchGR = [[UIPinchGestureRecognizer alloc] initWithTarget:self
+                                                             action:@selector(handleAppleGuestures:)];
+    
     [self.petImageView addGestureRecognizer:self.panGR];
+    [self.view addGestureRecognizer:self.pinchGR];
     
     self.pet = [[Pet alloc] init];
     
@@ -149,6 +155,10 @@
     } else if (!self.pet.isGrumpy) {
         self.petImageView.image = [UIImage imageNamed:@"default"];
     }
+}
+
+-(void)handleAppleGuestures:(UIPinchGestureRecognizer *)pinchGesture {
+    
 }
 
 
