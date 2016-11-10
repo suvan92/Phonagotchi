@@ -27,11 +27,9 @@
     
     if (velocity.x > 10000) {
         self.isGrumpy = YES;
-        
     } else if ((velocity.x > 1000) && (velocity.x < 10000)) {
         self.isGrumpy = NO;
     }
-    
 }
 
 @end

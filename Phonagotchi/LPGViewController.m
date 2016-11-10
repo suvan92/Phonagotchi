@@ -30,12 +30,21 @@
     self.petImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.petImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.petImageView.userInteractionEnabled = YES;
-    
-    
-    
     self.petImageView.image = [UIImage imageNamed:@"default"];
     
+    self.appleImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    self.appleImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.appleImageView.userInteractionEnabled = YES;
+    self.appleImageView.image = [UIImage imageNamed:@"apple"];
+    
+    self.bucketImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    self.bucketImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.bucketImageView.userInteractionEnabled = YES;
+    self.bucketImageView.image = [UIImage imageNamed:@"bucket"];
+    
     [self.view addSubview:self.petImageView];
+    [self.view addSubview:self.appleImageView];
+    [self.view addSubview:self.bucketImageView];
     
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.petImageView
                                                           attribute:NSLayoutAttributeCenterX
@@ -52,6 +61,72 @@
                                                           attribute:NSLayoutAttributeCenterY
                                                          multiplier:1.0
                                                            constant:0.0]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.appleImageView
+                                                          attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterX
+                                                         multiplier:0.25
+                                                           constant:0.0]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.appleImageView
+                                                          attribute:NSLayoutAttributeCenterY
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterY
+                                                         multiplier:1.6
+                                                           constant:0.0]];
+    
+    [self.appleImageView addConstraint:[NSLayoutConstraint constraintWithItem:self.appleImageView
+                                                                    attribute:NSLayoutAttributeWidth
+                                                                    relatedBy:NSLayoutRelationEqual
+                                                                       toItem:nil
+                                                                    attribute:NSLayoutAttributeNotAnAttribute
+                                                                   multiplier:1.0
+                                                                     constant:50]];
+    
+    [self.appleImageView addConstraint:[NSLayoutConstraint constraintWithItem:self.appleImageView
+                                                                    attribute:NSLayoutAttributeHeight
+                                                                    relatedBy:NSLayoutRelationEqual
+                                                                       toItem:nil
+                                                                    attribute:NSLayoutAttributeNotAnAttribute
+                                                                   multiplier:1.0
+                                                                     constant:50]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.bucketImageView
+                                                          attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterX
+                                                         multiplier:0.25
+                                                           constant:0.0]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.bucketImageView
+                                                          attribute:NSLayoutAttributeCenterY
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterY
+                                                         multiplier:1.8
+                                                           constant:0.0]];
+    
+    [self.bucketImageView addConstraint:[NSLayoutConstraint constraintWithItem:self.bucketImageView
+                                                                     attribute:NSLayoutAttributeWidth
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:nil
+                                                                     attribute:NSLayoutAttributeNotAnAttribute
+                                                                    multiplier:1.0
+                                                                      constant:50]];
+    
+    [self.bucketImageView addConstraint:[NSLayoutConstraint constraintWithItem:self.bucketImageView
+                                                                     attribute:NSLayoutAttributeHeight
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:nil
+                                                                     attribute:NSLayoutAttributeNotAnAttribute
+                                                                    multiplier:1.0
+                                                                      constant:50]];
+    
+    
     
     
     self.panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self
