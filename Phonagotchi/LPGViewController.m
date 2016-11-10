@@ -8,7 +8,7 @@
 
 #import "LPGViewController.h"
 
-@interface LPGViewController ()
+@interface LPGViewController () <UIGestureRecognizerDelegate>
 
 @property (nonatomic) UIImageView *petImageView;
 
