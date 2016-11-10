@@ -15,7 +15,6 @@
     self = [super init];
     if (self) {
         _isGrumpy = NO;
-        _isHappy = YES;
     }
     return self;
 }
@@ -26,12 +25,10 @@
         NSLog(@"%@", NSStringFromCGPoint(velocity));
     }
     
-    
     if (velocity.x > 10000) {
         self.isGrumpy = YES;
-        self.isHappy = NO;
-    } else if ((velocity.x < 10000) && (velocity.x > 1000)) {
-        self.isHappy = YES;
+        
+    } else if ((velocity.x > 1000) && (velocity.x < 10000)) {
         self.isGrumpy = NO;
     }
     

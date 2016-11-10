@@ -12,6 +12,8 @@
 @interface LPGViewController () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIImageView *petImageView;
+@property (nonatomic, strong) UIImageView *appleImageView;
+@property (nonatomic, strong) UIImageView *bucketImageView;
 @property (nonatomic, strong) IBOutlet UIPanGestureRecognizer *panGR;
 @property (nonatomic, strong) Pet *pet;
 
@@ -28,6 +30,8 @@
     self.petImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.petImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.petImageView.userInteractionEnabled = YES;
+    
+    
     
     self.petImageView.image = [UIImage imageNamed:@"default"];
     
@@ -67,7 +71,7 @@
     
     if (self.pet.isGrumpy) {
         self.petImageView.image = [UIImage imageNamed:@"grumpy"];
-    } else if (self.pet.isHappy) {
+    } else if (!self.pet.isGrumpy) {
         self.petImageView.image = [UIImage imageNamed:@"default"];
     }
 }
