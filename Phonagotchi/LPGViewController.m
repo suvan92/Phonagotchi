@@ -160,7 +160,7 @@
 
 -(void)handleAppleGuestures:(UIPinchGestureRecognizer *)pinchGesture {
     
-    CGRect originalApplePos = CGRectMake(19, 430, 40, 40);
+    CGRect originalApplePos = CGRectMake(20, 435, 40, 40);
     
     CGPoint movingApplePos = [pinchGesture locationInView:self.view];
     
