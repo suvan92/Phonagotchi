@@ -21,10 +21,6 @@
 
 -(void)petting:(CGPoint)velocity {
     
-    if (velocity.x > 5000) {
-        NSLog(@"%@", NSStringFromCGPoint(velocity));
-    }
-    
     if (velocity.x > 10000) {
         self.isGrumpy = YES;
     } else if ((velocity.x > 1000) && (velocity.x < 10000)) {

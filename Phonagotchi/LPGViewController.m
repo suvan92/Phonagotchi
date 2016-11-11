@@ -138,12 +138,13 @@
                                                              action:@selector(handleAppleGuestures:)];
     
     [self.petImageView addGestureRecognizer:self.panGR];
-    [self.view addGestureRecognizer:self.pinchGR];
+    [self.appleImageView addGestureRecognizer:self.pinchGR];
+    
     
     self.pet = [[Pet alloc] init];
     
-    
 }
+
 
 -(void)handlePettingGesture:(UIPanGestureRecognizer *)panGesture {
     CGPoint petVelocity = [panGesture velocityInView:self.petImageView];
@@ -159,8 +160,38 @@
 
 -(void)handleAppleGuestures:(UIPinchGestureRecognizer *)pinchGesture {
     
+    CGRect originalApplePos = CGRectMake(19, 430, 40, 40);
+    
+    CGPoint movingApplePos = [pinchGesture locationInView:self.view];
+    
+    self.appleImageView.frame = CGRectMake(movingApplePos.x, movingApplePos.y, 40, 40);
+    
+    if (pinchGesture.state == UIGestureRecognizerStateEnded) {
+        
+        if (CGRectIntersectsRect(self.petImageView.frame, self.appleImageView.frame)) {
+            
+            self.appleImageView.alpha = 1.0;
+            [UIView animateWithDuration:1.0 animations:^(void) {
+                self.appleImageView.alpha = 0.0;
+                
+            } completion:^(BOOL completion) {
+                self.appleImageView.frame = originalApplePos;
+                self.appleImageView.alpha = 1.0;
+            }];
+            
+        } else {
+            self.appleImageView.frame = CGRectMake(movingApplePos.x, movingApplePos.y, 40, 40);
+            [UIView animateWithDuration:2.0 animations:^(void) {
+                self.appleImageView.frame = CGRectMake(movingApplePos.x, 600, 40, 40);
+            } completion:^(BOOL completion) {
+                self.appleImageView.frame = originalApplePos;
+            }];
+        }
+        
+    }
+    
+    
 }
-
 
 
 @end
